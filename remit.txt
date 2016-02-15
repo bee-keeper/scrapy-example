@@ -1,0 +1,12 @@
+ Simple Python Crawler.
+
+o Write a simple single threaded crawler capable of taking a single seed and 
+o Performance and scaling does not need to be addressed - being able to 
+collecting all content on a domain into files on disk. 
+collect a small simple site is all that is required but I should be able to run 
+the code. 
+
+o The use of third party libraries for HTML parsing is fine.
+
+o The code should be written in Python and it should run on a basic Linux 
+machine with instructions for additional libraries that need installing.

@@ -1,0 +1,17 @@
+---
+
+- name: Provision ubuntu test box
+  hosts: all
+  gather_facts: no
+  sudo: yes
+  sudo_user: root
+  remote_user: vagrant
+
+  vars:
+    - application_user: ubuntu
+    - update_apt_cache: yes
+    - virtualenv_path: '/home/vagrant/venv'
+    - repo_root: '/home/vagrant/sync'
+    - requirements_file: '/home/vagrant/sync/requirements.txt'
+  roles:
+    - vagrant

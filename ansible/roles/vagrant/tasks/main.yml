@@ -1,0 +1,54 @@
+---
+
+# Vagrant 1.7.4
+# Ansible 2
+# Virtualbox 5.0.10
+
+- name: Ensure OpenSSl is the latest version
+  apt: name={{ item }} update_cache={{ update_apt_cache }} state=latest
+  with_items:
+    - openssl
+  tags: packages
+
+- name: Install base packages
+  apt: name={{ item }} update_cache={{ update_apt_cache }} state=installed
+  with_items:
+    - git
+    - vim
+    - libxml2-dev
+    - libxslt1-dev
+    - python-dev
+    - python-pip
+  tags: packages
+
+- name: Ensure latest setuptools
+  pip: name=setuptools state=latest
+  tags:
+    - requirements
+
+- name: Install virtualenv
+  pip: name={{ item }}
+  with_items:
+    - virtualenv
+  tags: packages
+
+- name: Create the virtualenv
+  sudo: no
+  command: virtualenv {{ virtualenv_path }} --no-site-packages creates={{ virtualenv_path }}/bin/activate
+
+- name: Update .bashrc for convenience
+  lineinfile: >
+    dest='/home/vagrant/.bashrc'
+    owner={{ application_user }}
+    line='{{ item }}'
+    state=present
+    insertafter=EOF
+  with_items:
+    - '# Added by Ansible'
+    - 'source {{ virtualenv_path }}/bin/activate'
+    - 'cd /home/vagrant/sync'
+
+- name: Install project requirements
+  sudo: no
+  pip: virtualenv={{ virtualenv_path }} requirements={{ requirements_file }}
+  tags: requirements
