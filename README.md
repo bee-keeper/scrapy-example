@@ -1,6 +1,6 @@
 # scrapy-example
 
-An example project to get know scrapy.
+An example project to get to know scrapy.
 
 It goes to [Python Challenge](http://www.pythonchallenge.com/) and locally stores everything from within that domain.
 
