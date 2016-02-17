@@ -17,8 +17,10 @@
     - vim
     - libxml2-dev
     - libxslt1-dev
+    - libffi-dev
     - python-dev
     - python-pip
+    - libssl-dev
   tags: packages
 
 - name: Ensure latest setuptools
