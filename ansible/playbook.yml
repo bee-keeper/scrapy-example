@@ -8,7 +8,7 @@
   remote_user: vagrant
 
   vars:
-    - application_user: ubuntu
+    - application_user: vagrant
     - update_apt_cache: yes
     - virtualenv_path: '/home/vagrant/venv'
     - repo_root: '/home/vagrant/sync'
